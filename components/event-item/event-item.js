@@ -1,5 +1,6 @@
 import Link from "next/link";
 import styles from "./event-item.module.css";
+import Button from "../ui/button";
 
 export default function EventItem({ id, title, image, date, location }) {
   const humanReadableDate = new Date(date).toLocaleDateString("en-US", {
@@ -15,19 +16,19 @@ export default function EventItem({ id, title, image, date, location }) {
   return (
     <li className={styles.item}>
       <img src={"/" + image} alt={title} />
-      <div>
-        <div>
+      <div className={styles.content}>
+        <div className={styles.summary}>
           <h2>{title}</h2>
-          <div>
+          <div className={styles.date}>
             <time>{humanReadableDate}</time>
           </div>
-          <div>
+          <div className={styles.address}>
             <address>{formattedAddress}</address>
           </div>
         </div>
 
-        <div>
-          <Link href={exploreLink}>Explore Event</Link>
+        <div className={styles.actions}>
+          <Button link={exploreLink}>Explore Event</Button>
         </div>
       </div>
     </li>

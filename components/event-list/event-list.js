@@ -3,7 +3,7 @@ import styles from "./event-list.module.css";
 
 export default function EventList({ items }) {
   return (
-    <ul>
+    <ul className={styles.list}>
       {items.map((item) => (
         <EventItem
           key={item.id}
