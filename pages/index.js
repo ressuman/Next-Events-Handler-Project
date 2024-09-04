@@ -1,4 +1,4 @@
-import EventList from "@/components/events/event-list";
+import EventList from "@/components/event-list/event-list";
 import { getFeaturedEvents } from "@/data/dummy-data";
 
 export default function Home() {
