@@ -1,4 +1,5 @@
 import styles from "./logistics-item.module.css";
+import PropTypes from "prop-types";
 
 export default function LogisticsItem({ children, icon: Icon }) {
   return (
@@ -10,3 +11,8 @@ export default function LogisticsItem({ children, icon: Icon }) {
     </li>
   );
 }
+
+LogisticsItem.propTypes = {
+  icon: PropTypes.elementType.isRequired,
+  children: PropTypes.node.isRequired,
+};

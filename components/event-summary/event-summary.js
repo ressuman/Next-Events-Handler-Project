@@ -1,4 +1,5 @@
 import styles from "./event-summary.module.css";
+import PropTypes from "prop-types";
 
 export default function EventSummary({ title }) {
   return (
@@ -7,3 +8,7 @@ export default function EventSummary({ title }) {
     </section>
   );
 }
+
+EventSummary.propTypes = {
+  title: PropTypes.string.isRequired,
+};

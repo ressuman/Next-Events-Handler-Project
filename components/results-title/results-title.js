@@ -1,5 +1,6 @@
 import Button from "../ui/button";
 import styles from "./results-title.module.css";
+import PropTypes from "prop-types";
 
 export default function ResultsTitle({ date }) {
   const humanReadableDate = new Date(date).toLocaleDateString("en-US", {
@@ -14,3 +15,7 @@ export default function ResultsTitle({ date }) {
     </section>
   );
 }
+
+ResultsTitle.propTypes = {
+  date: PropTypes.string.isRequired,
+};

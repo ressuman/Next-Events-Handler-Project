@@ -1,5 +1,5 @@
 import { useRef } from "react";
-
+import PropTypes from "prop-types";
 import Button from "../ui/button";
 import styles from "./event-search.module.css";
 
@@ -49,3 +49,7 @@ export default function EventSearch({ onSearch }) {
     </form>
   );
 }
+
+EventSearch.propTypes = {
+  onSearch: PropTypes.func.isRequired,
+};

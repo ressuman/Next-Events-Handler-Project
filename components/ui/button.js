@@ -1,5 +1,6 @@
 import Link from "next/link";
 import styles from "./button.module.css";
+import PropTypes from "prop-types";
 
 export default function Button({ children, link, onClick }) {
   if (link) {
@@ -15,3 +16,9 @@ export default function Button({ children, link, onClick }) {
     </button>
   );
 }
+
+Button.propTypes = {
+  link: PropTypes.string,
+  onClick: PropTypes.func,
+  children: PropTypes.node.isRequired,
+};

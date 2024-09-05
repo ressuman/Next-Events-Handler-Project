@@ -2,6 +2,7 @@ import styles from "./event-logistics.module.css";
 import DateIcon from "../icons/date-icon";
 import AddressIcon from "../icons/address-icon";
 import LogisticsItem from "../logistics-item/logistics-item";
+import PropTypes from "prop-types";
 
 export default function EventLogistics({ date, address, image, imageAlt }) {
   const humanReadableDate = new Date(date).toLocaleDateString("en-US", {
@@ -28,3 +29,10 @@ export default function EventLogistics({ date, address, image, imageAlt }) {
     </section>
   );
 }
+
+EventLogistics.propTypes = {
+  date: PropTypes.string.isRequired,
+  address: PropTypes.string.isRequired,
+  image: PropTypes.string.isRequired,
+  imageAlt: PropTypes.string.isRequired,
+};

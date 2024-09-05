@@ -1,5 +1,6 @@
 import EventItem from "../event-item/event-item";
 import styles from "./event-list.module.css";
+import PropTypes from "prop-types";
 
 export default function EventList({ items }) {
   return (
@@ -17,3 +18,15 @@ export default function EventList({ items }) {
     </ul>
   );
 }
+
+EventList.propTypes = {
+  items: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+      location: PropTypes.string.isRequired,
+      date: PropTypes.string.isRequired,
+      image: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+};

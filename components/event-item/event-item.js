@@ -3,6 +3,7 @@ import Button from "../ui/button";
 import DateIcon from "../icons/date-icon";
 import AddressIcon from "../icons/address-icon";
 import ArrowRightIcon from "../icons/arrow-right-icon";
+import PropTypes from "prop-types";
 
 export default function EventItem({ id, title, image, date, location }) {
   const humanReadableDate = new Date(date).toLocaleDateString("en-US", {
@@ -43,3 +44,11 @@ export default function EventItem({ id, title, image, date, location }) {
     </li>
   );
 }
+
+EventItem.propTypes = {
+  title: PropTypes.string.isRequired,
+  image: PropTypes.string.isRequired,
+  date: PropTypes.string.isRequired,
+  location: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
+};
