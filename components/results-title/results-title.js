@@ -17,5 +17,5 @@ export default function ResultsTitle({ date }) {
 }
 
 ResultsTitle.propTypes = {
-  date: PropTypes.string.isRequired,
+  date: PropTypes.instanceOf(Date).isRequired,
 };
