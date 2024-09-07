@@ -21,13 +21,7 @@ export async function getStaticProps() {
 
   return {
     props: {
-      products: [
-        {
-          id: "p1",
-          title: "Product 1",
-          description: "This is product 1",
-        },
-      ],
+      products: data.products,
     },
   };
 }
