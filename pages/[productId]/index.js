@@ -2,6 +2,11 @@ import path from "path";
 import fs from "fs/promises";
 
 export default function ProductsDetailPage({ loadedProduct }) {
+  // //This is the instance where fallback is set to true
+  // if (!loadedProduct) {
+  //   return <p>Loading...</p>;
+  // }
+
   return (
     <>
       <h1>{loadedProduct.title}</h1>
@@ -55,6 +60,20 @@ export async function getStaticProps(context) {
 //     fallback: false,
 //   };
 // }
+
+// export async function getStaticPaths() {
+//   return {
+//     paths: [
+//       {
+//         params: {
+//           productId: "p1",
+//         },
+//       },
+//     ],
+//     fallback: true,
+//   };
+// }
+
 export async function getStaticPaths() {
   return {
     paths: [
@@ -64,6 +83,6 @@ export async function getStaticPaths() {
         },
       },
     ],
-    fallback: true,
+    fallback: "blocking",
   };
 }
