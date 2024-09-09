@@ -94,31 +94,56 @@ export default function LastSalesPage() {
 export async function getStaticProps() {
   const url = process.env.NEXT_PUBLIC_FB_RTDB_REF_URL;
 
-  return fetch(`${url}/sales.json`)
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error("Failed to fetch data");
-      }
-      return response.json();
-    })
-    .then((data) => {
-      const transformedSalesIntoArray = [];
+  // return fetch(`${url}/sales.json`)
+  //   .then((response) => {
+  //     if (!response.ok) {
+  //       throw new Error("Failed to fetch data");
+  //     }
+  //     return response.json();
+  //   })
+  //   .then((data) => {
+  //     const transformedSalesIntoArray = [];
 
-      for (const key in data) {
-        transformedSalesIntoArray.push({
-          id: key,
-          userName: data[key].userName,
-          volume: data[key].volume,
-        });
-      }
+  //     for (const key in data) {
+  //       transformedSalesIntoArray.push({
+  //         id: key,
+  //         userName: data[key].userName,
+  //         volume: data[key].volume,
+  //       });
+  //     }
 
-      return {
-        props: {
-          sales: transformedSalesIntoArray,
-        },
-        revalidate: 5,
-      };
+  //     return {
+  //       props: {
+  //         sales: transformedSalesIntoArray,
+  //       },
+  //       revalidate: 5,
+  //     };
+  //   });
+
+  const response = await fetch(`${url}/sales.json`);
+
+  if (!response.ok) {
+    throw new Error("Failed to fetch data");
+  }
+
+  const data = await response.json();
+
+  const transformedSalesIntoArray = [];
+
+  for (const key in data) {
+    transformedSalesIntoArray.push({
+      id: key,
+      userName: data[key].userName,
+      volume: data[key].volume,
     });
+  }
+
+  return {
+    props: {
+      sales: transformedSalesIntoArray,
+    },
+    revalidate: 5,
+  };
 
   // return {
   //   props: {
