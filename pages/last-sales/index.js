@@ -6,6 +6,7 @@ export default function LastSalesPage() {
   const [error, setError] = useState(null);
 
   const url = process.env.NEXT_PUBLIC_FB_RTDB_REF_URL;
+
   useEffect(() => {
     setIsLoading(true);
 
