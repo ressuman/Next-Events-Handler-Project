@@ -1,4 +1,3 @@
-import ErrorAlert from "@/components/error-alert/error-alert";
 import EventContent from "@/components/event-content/event-content";
 import EventLogistics from "@/components/event-logistics/event-logistics";
 import EventSummary from "@/components/event-summary/event-summary";
