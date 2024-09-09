@@ -5,7 +5,7 @@ import Button from "@/components/ui/button";
 import { getFilteredEvents } from "@/data/dummy-data";
 import { useRouter } from "next/router";
 
-export default function FilteredEventsPage() {
+export default function FilteredEventsPage({ hasError }) {
   const router = useRouter();
 
   const filteredData = router.query.slug;
@@ -20,14 +20,7 @@ export default function FilteredEventsPage() {
   const numYear = +filteredYear;
   const numMonth = +filteredMonth;
 
-  if (
-    isNaN(numYear) ||
-    isNaN(numMonth) ||
-    numYear > 2030 ||
-    numYear < 2021 ||
-    numMonth < 1 ||
-    numMonth > 12
-  ) {
+  if (hasError) {
     return (
       <>
         <ErrorAlert>
