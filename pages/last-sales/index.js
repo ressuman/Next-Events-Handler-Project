@@ -1,14 +1,17 @@
 import { useEffect, useState } from "react";
+import useSWR from "swr";
 
 export default function LastSalesPage() {
   const [sales, setSales] = useState();
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [isError, setIsError] = useState(null);
 
   const url = process.env.NEXT_PUBLIC_FB_RTDB_REF_URL;
 
+  const { data, error, isLoading } = useSWR(`${url}/sales.json`);
+
   useEffect(() => {
-    setIsLoading(true);
+    setLoading(true);
 
     fetch(`${url}/sales.json`)
       .then((response) => {
@@ -29,17 +32,21 @@ export default function LastSalesPage() {
         }
 
         setSales(transformedSalesIntoArray);
-        setIsLoading(false);
+        setLoading(false);
       })
       .catch((error) => {
         console.error(error);
-        setError(err.message);
-        setIsLoading(false);
+        setIsError(error.message);
+        setLoading(false);
       });
   }, []);
 
-  if (isLoading) {
+  if (loading) {
     return <p>Loading..</p>;
+  }
+
+  if (isError) {
+    return <p>{isError}</p>;
   }
 
   if (!sales || sales.length === 0) {
