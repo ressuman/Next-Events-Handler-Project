@@ -182,7 +182,7 @@ export async function getStaticProps() {
     props: {
       sales: transformedSalesIntoArray,
     },
-    //revalidate: 5,
+    revalidate: 5,
   };
 
   // return {
