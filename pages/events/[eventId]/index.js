@@ -2,16 +2,20 @@ import ErrorAlert from "@/components/error-alert/error-alert";
 import EventContent from "@/components/event-content/event-content";
 import EventLogistics from "@/components/event-logistics/event-logistics";
 import EventSummary from "@/components/event-summary/event-summary";
-import { getAllEvents, getEventById } from "@/helpers/utils/api-utils";
+import {
+  getAllEvents,
+  getEventById,
+  getFeaturedEvents,
+} from "@/helpers/utils/api-utils";
 
 export default function EventsDetailPage({ selectedEvent }) {
   const event = selectedEvent;
 
   if (!event) {
     return (
-      <ErrorAlert>
-        <p>No Event found!</p>
-      </ErrorAlert>
+      <div className="center">
+        <p>Loading...</p>
+      </div>
     );
   }
 
@@ -46,7 +50,8 @@ export async function getStaticProps({ params }) {
 }
 
 export async function getStaticPaths() {
-  const events = await getAllEvents();
+  //const events = await getAllEvents();
+  const events = await getFeaturedEvents();
 
   const paths = events.map((event) => ({
     params: {
@@ -56,6 +61,7 @@ export async function getStaticPaths() {
 
   return {
     paths: paths,
-    fallback: false,
+    //fallback: false,
+    fallback: true,
   };
 }
