@@ -51,7 +51,7 @@ const DUMMY_EVENTS = [
   },
   {
     id: "e6",
-    title: "UX/UI Design Bootcamp",
+    title: "UX/UI Design Bootcamp.",
     description:
       "Want to become a design pro? Join this bootcamp to explore user experience and user interface design with hands-on sessions.",
     location: "Design Street 45, 24680 Creativity Town",
@@ -61,7 +61,7 @@ const DUMMY_EVENTS = [
   },
   {
     id: "e7",
-    title: "Cybersecurity Essentials",
+    title: "Cybersecurity Essentials.",
     description:
       "In a world full of cyber threats, it's important to stay safe. This event will cover the key principles of cybersecurity for individuals and businesses.",
     location: "Security Blvd 33, 98765 Safe City",
@@ -71,7 +71,7 @@ const DUMMY_EVENTS = [
   },
   {
     id: "e8",
-    title: "Data Science with Python",
+    title: "Data Science with Python.",
     description:
       "Learn how to analyze data and build models using Python in this hands-on workshop. Perfect for aspiring data scientists!",
     location: "Analytics Road 12, 54321 Data City",
@@ -80,10 +80,6 @@ const DUMMY_EVENTS = [
     isFeatured: true,
   },
 ];
-
-export function getFeaturedEvents() {
-  return DUMMY_EVENTS.filter((event) => event.isFeatured);
-}
 
 export function getAllEvents() {
   return DUMMY_EVENTS;
