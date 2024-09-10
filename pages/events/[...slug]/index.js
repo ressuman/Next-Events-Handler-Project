@@ -3,8 +3,10 @@ import EventList from "@/components/event-list/event-list";
 import ResultsTitle from "@/components/results-title/results-title";
 import Button from "@/components/ui/button";
 import { getFilteredEvents } from "@/helpers/utils/api-utils";
+import useSWR from "swr";
 
 import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 
 // export default function FilteredEventsPage({ hasError, events, date }) {
 
@@ -49,11 +51,33 @@ import { useRouter } from "next/router";
 // }
 
 export default function FilteredEventsPage({ hasError, events, date }) {
+  const [loadedEvents, setLoadedEvents] = useState();
+
   const router = useRouter();
 
   const filteredData = router.query.slug;
 
-  if (!filteredData) {
+  const url = process.env.NEXT_PUBLIC_FB_RTDB_REF_URL;
+
+  const fetcher = (url) => fetch(url).then((res) => res.json());
+
+  const { data, error, isLoading } = useSWR(`${url}/events.json`, fetcher);
+  useEffect(() => {
+    if (data) {
+      const transformedEventsIntoArray = [];
+
+      for (const key in data) {
+        transformedEventsIntoArray.push({
+          id: key,
+          ...data[key],
+        });
+      }
+
+      setLoadedEvents(transformedEventsIntoArray);
+    }
+  }, [data]);
+
+  if (!loadedEvents) {
     return <p className="center">Loading...</p>;
   }
 
