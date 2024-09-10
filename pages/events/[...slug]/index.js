@@ -138,46 +138,46 @@ export default function FilteredEventsPage() {
   );
 }
 
-export async function getServerSideProps({ params }) {
-  const { slug } = params;
+// export async function getServerSideProps({ params }) {
+//   const { slug } = params;
 
-  const filteredYear = slug[0];
-  const filteredMonth = slug[1];
+//   const filteredYear = slug[0];
+//   const filteredMonth = slug[1];
 
-  const numYear = +filteredYear;
-  const numMonth = +filteredMonth;
+//   const numYear = +filteredYear;
+//   const numMonth = +filteredMonth;
 
-  if (
-    isNaN(numYear) ||
-    isNaN(numMonth) ||
-    numYear > 2030 ||
-    numYear < 2021 ||
-    numMonth < 1 ||
-    numMonth > 12
-  ) {
-    return {
-      props: {
-        hasError: true,
-      },
-      //notFound: true,
-      // redirect: {
-      //   destination: "/error",
-      // },
-    };
-  }
+//   if (
+//     isNaN(numYear) ||
+//     isNaN(numMonth) ||
+//     numYear > 2030 ||
+//     numYear < 2021 ||
+//     numMonth < 1 ||
+//     numMonth > 12
+//   ) {
+//     return {
+//       props: {
+//         hasError: true,
+//       },
+//       //notFound: true,
+//       // redirect: {
+//       //   destination: "/error",
+//       // },
+//     };
+//   }
 
-  const filteredEvents = await getFilteredEvents({
-    year: numYear,
-    month: numMonth,
-  });
+//   const filteredEvents = await getFilteredEvents({
+//     year: numYear,
+//     month: numMonth,
+//   });
 
-  return {
-    props: {
-      events: filteredEvents,
-      date: {
-        year: numYear,
-        month: numMonth,
-      },
-    },
-  };
-}
+//   return {
+//     props: {
+//       events: filteredEvents,
+//       date: {
+//         year: numYear,
+//         month: numMonth,
+//       },
+//     },
+//   };
+// }
