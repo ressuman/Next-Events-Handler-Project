@@ -78,8 +78,21 @@ export default function FilteredEventsPage() {
     }
   }, [data]);
 
+  let pageHeadData = (
+    <Head>
+      <title>Filtered Events</title>
+      <meta name="description" content="A list of filtered events" />
+      <link rel="icon" type="image/svg" href="/icon.svg" />
+    </Head>
+  );
+
   if (!loadedEvents || isLoading) {
-    return <p className="center">Loading...</p>;
+    return (
+      <>
+        {pageHeadData}
+        <p className="center">Loading...</p>;
+      </>
+    );
   }
 
   const filteredYear = filteredData[0];
@@ -87,6 +100,17 @@ export default function FilteredEventsPage() {
 
   const numYear = +filteredYear;
   const numMonth = +filteredMonth;
+
+  pageHeadData = (
+    <Head>
+      <title>Filtered Events</title>
+      <meta
+        name="description"
+        content={`All events for ${numMonth}/${numYear}.`}
+      />
+      <link rel="icon" type="image/svg" href="/icon.svg" />
+    </Head>
+  );
 
   if (
     isNaN(numYear) ||
@@ -99,6 +123,7 @@ export default function FilteredEventsPage() {
   ) {
     return (
       <>
+        {pageHeadData}
         <ErrorAlert>
           <p>Invalid filter. Please adjust your values!.</p>
         </ErrorAlert>
@@ -119,6 +144,7 @@ export default function FilteredEventsPage() {
   if (!filteredEvents || filteredEvents.length === 0) {
     return (
       <>
+        {pageHeadData}
         <ErrorAlert>
           <p>No events found for the chosen filter!</p>
         </ErrorAlert>
@@ -133,14 +159,7 @@ export default function FilteredEventsPage() {
 
   return (
     <>
-      <Head>
-        <title>Filtered Events</title>
-        <meta
-          name="description"
-          content={`All events for ${numMonth}/${numYear}.`}
-        />
-        <link rel="icon" type="image/svg" href="/icon.svg" />
-      </Head>
+      {pageHeadData}
       <ResultsTitle date={formatDate} />
       <EventList items={filteredEvents} />
     </>
