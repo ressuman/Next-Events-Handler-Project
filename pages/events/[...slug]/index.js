@@ -6,20 +6,62 @@ import { getFilteredEvents } from "@/helpers/utils/api-utils";
 
 import { useRouter } from "next/router";
 
+// export default function FilteredEventsPage({ hasError, events, date }) {
+
+//   if (hasError) {
+//     return (
+//       <>
+//         <ErrorAlert>
+//           <p>Invalid filter. Please adjust your values!.</p>
+//         </ErrorAlert>
+//         <div className="center">
+//           <Button link="/events">Show All Events</Button>
+//         </div>
+//       </>
+//     );
+//   }
+
+//   const filteredEvents = events;
+
+//   if (!filteredEvents || filteredEvents.length === 0) {
+//     return (
+//       <>
+//         <ErrorAlert>
+//           <p>No events found for the chosen filter!</p>
+//         </ErrorAlert>
+//         <div className="center">
+//           <Button link="/events">Show All Events</Button>
+//         </div>
+//       </>
+//     );
+//   }
+
+//   const { year, month } = date;
+
+//   const formatDate = new Date(year, month - 1);
+
+//   return (
+//     <>
+//       <ResultsTitle date={formatDate} />
+//       <EventList items={filteredEvents} />
+//     </>
+//   );
+// }
+
 export default function FilteredEventsPage({ hasError, events, date }) {
   const router = useRouter();
 
-  // const filteredData = router.query.slug;
+  const filteredData = router.query.slug;
 
-  // if (!filteredData) {
-  //   return <p className="center">Loading...</p>;
-  // }
+  if (!filteredData) {
+    return <p className="center">Loading...</p>;
+  }
 
-  // const filteredYear = filteredData[0];
-  // const filteredMonth = filteredData[1];
+  const filteredYear = filteredData[0];
+  const filteredMonth = filteredData[1];
 
-  // const numYear = +filteredYear;
-  // const numMonth = +filteredMonth;
+  const numYear = +filteredYear;
+  const numMonth = +filteredMonth;
 
   if (hasError) {
     return (
