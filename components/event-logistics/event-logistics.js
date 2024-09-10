@@ -3,6 +3,7 @@ import DateIcon from "../icons/date-icon";
 import AddressIcon from "../icons/address-icon";
 import LogisticsItem from "../logistics-item/logistics-item";
 import PropTypes from "prop-types";
+import Image from "next/image";
 
 export default function EventLogistics({ date, address, image, imageAlt }) {
   const humanReadableDate = new Date(date).toLocaleDateString("en-US", {
@@ -16,7 +17,13 @@ export default function EventLogistics({ date, address, image, imageAlt }) {
   return (
     <section className={styles.logistics}>
       <div className={styles.image}>
-        <img src={`/${image}`} alt={imageAlt} />
+        <Image
+          src={`/${image}`}
+          alt={imageAlt}
+          width={400}
+          height={400}
+          priority
+        />
       </div>
       <ul className={styles.list}>
         <LogisticsItem icon={DateIcon}>
