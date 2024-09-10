@@ -7,6 +7,7 @@ import useSWR from "swr";
 
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import Head from "next/head";
 
 // export default function FilteredEventsPage({ hasError, events, date }) {
 
@@ -132,6 +133,14 @@ export default function FilteredEventsPage() {
 
   return (
     <>
+      <Head>
+        <title>Filtered Events</title>
+        <meta
+          name="description"
+          content={`All events for ${numMonth}/${numYear}.`}
+        />
+        <link rel="icon" type="image/svg" href="/icon.svg" />
+      </Head>
       <ResultsTitle date={formatDate} />
       <EventList items={filteredEvents} />
     </>

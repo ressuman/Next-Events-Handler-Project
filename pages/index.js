@@ -1,11 +1,20 @@
 import EventList from "@/components/event-list/event-list";
 import { getFeaturedEvents } from "@/helpers/utils/api-utils";
+import Head from "next/head";
 
 export default function HomePage({ events }) {
   return (
-    <div>
+    <>
+      <Head>
+        <title>Ressuman Events</title>
+        <meta
+          name="description"
+          content="Find a lot of great events that allow you to evolve..."
+        />
+        <link rel="icon" type="image/svg" href="/icon.svg" />
+      </Head>
       <EventList items={events} />
-    </div>
+    </>
   );
 }
 

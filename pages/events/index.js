@@ -1,6 +1,7 @@
 import EventList from "@/components/event-list/event-list";
 import EventSearch from "@/components/event-search/event-search";
 import { getAllEvents } from "@/helpers/utils/api-utils";
+import Head from "next/head";
 
 import { useRouter } from "next/router";
 
@@ -15,6 +16,11 @@ export default function AllEventsPage({ events }) {
 
   return (
     <>
+      <Head>
+        <title>Ressuman-All Events</title>
+        <meta name="description" content="Find all events we cater for" />
+        <link rel="icon" type="image/svg" href="/icon.svg" />
+      </Head>
       <EventSearch onSearch={findEventsHandler} />
       <EventList items={events} />
     </>

@@ -6,6 +6,7 @@ import {
   getEventById,
   getFeaturedEvents,
 } from "@/helpers/utils/api-utils";
+import Head from "next/head";
 
 export default function EventsDetailPage({ selectedEvent }) {
   const event = selectedEvent;
@@ -20,6 +21,11 @@ export default function EventsDetailPage({ selectedEvent }) {
 
   return (
     <>
+      <Head>
+        <title>All Events-{event.title}</title>
+        <meta name="description" content={event.description} />
+        <link rel="icon" type="image/svg" href="/icon.svg" />
+      </Head>
       <EventSummary title={event.title} />
       <EventLogistics
         date={event.date}
