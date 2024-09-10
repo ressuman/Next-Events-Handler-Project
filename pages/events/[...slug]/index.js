@@ -50,7 +50,7 @@ import { useEffect, useState } from "react";
 //   );
 // }
 
-export default function FilteredEventsPage({ hasError, events, date }) {
+export default function FilteredEventsPage() {
   const [loadedEvents, setLoadedEvents] = useState();
 
   const router = useRouter();
@@ -77,7 +77,7 @@ export default function FilteredEventsPage({ hasError, events, date }) {
     }
   }, [data]);
 
-  if (!loadedEvents) {
+  if (!loadedEvents || isLoading) {
     return <p className="center">Loading...</p>;
   }
 
@@ -87,7 +87,15 @@ export default function FilteredEventsPage({ hasError, events, date }) {
   const numYear = +filteredYear;
   const numMonth = +filteredMonth;
 
-  if (hasError) {
+  if (
+    isNaN(numYear) ||
+    isNaN(numMonth) ||
+    numYear > 2030 ||
+    numYear < 2021 ||
+    numMonth < 1 ||
+    numMonth > 12 ||
+    error
+  ) {
     return (
       <>
         <ErrorAlert>
@@ -99,8 +107,13 @@ export default function FilteredEventsPage({ hasError, events, date }) {
       </>
     );
   }
-
-  const filteredEvents = events;
+  const filteredEvents = loadedEvents.filter((event) => {
+    const eventDate = new Date(event.date);
+    return (
+      eventDate.getFullYear() === numYear &&
+      eventDate.getMonth() === numMonth - 1
+    );
+  });
 
   if (!filteredEvents || filteredEvents.length === 0) {
     return (
@@ -115,9 +128,7 @@ export default function FilteredEventsPage({ hasError, events, date }) {
     );
   }
 
-  const { year, month } = date;
-
-  const formatDate = new Date(year, month - 1);
+  const formatDate = new Date(numYear, numMonth - 1);
 
   return (
     <>
