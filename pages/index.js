@@ -1,4 +1,5 @@
 import EventList from "@/components/events/event-list/event-list";
+import NewsletterRegistration from "@/components/input/newsletter-registration/newsletter-registration";
 import { getFeaturedEvents } from "@/helpers/utils/api-utils";
 import Head from "next/head";
 
@@ -13,6 +14,7 @@ export default function HomePage({ events }) {
         />
         <link rel="icon" type="image/svg" href="/icon.svg" />
       </Head>
+      <NewsletterRegistration />
       <EventList items={events} />
     </>
   );
