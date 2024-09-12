@@ -1,10 +1,10 @@
 import styles from "./event-item.module.css";
-import Button from "../ui/button";
-import DateIcon from "../icons/date-icon";
-import AddressIcon from "../icons/address-icon";
-import ArrowRightIcon from "../icons/arrow-right-icon";
 import PropTypes from "prop-types";
 import Image from "next/image";
+import DateIcon from "@/components/icons/date-icon";
+import AddressIcon from "@/components/icons/address-icon";
+import Button from "@/components/ui/button";
+import ArrowRightIcon from "@/components/icons/arrow-right-icon";
 
 export default function EventItem({ id, title, image, date, location }) {
   const humanReadableDate = new Date(date).toLocaleDateString("en-US", {

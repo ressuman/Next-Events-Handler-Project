@@ -1,4 +1,4 @@
-import EventList from "@/components/event-list/event-list";
+import EventList from "@/components/events/event-list/event-list";
 import { getFeaturedEvents } from "@/helpers/utils/api-utils";
 import Head from "next/head";
 

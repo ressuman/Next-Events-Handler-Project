@@ -1,5 +1,5 @@
-import EventList from "@/components/event-list/event-list";
-import EventSearch from "@/components/event-search/event-search";
+import EventList from "@/components/events/event-list/event-list";
+import EventSearch from "@/components/events/event-search/event-search";
 import { getAllEvents } from "@/helpers/utils/api-utils";
 import Head from "next/head";
 

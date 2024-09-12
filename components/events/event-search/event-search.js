@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import PropTypes from "prop-types";
-import Button from "../ui/button";
 import styles from "./event-search.module.css";
+import Button from "@/components/ui/button";
 
 export default function EventSearch({ onSearch }) {
   const yearInputRef = useRef();

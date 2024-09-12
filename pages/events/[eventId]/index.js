@@ -1,6 +1,6 @@
-import EventContent from "@/components/event-content/event-content";
-import EventLogistics from "@/components/event-logistics/event-logistics";
-import EventSummary from "@/components/event-summary/event-summary";
+import EventContent from "@/components/event-detail/event-content/event-content";
+import EventLogistics from "@/components/event-detail/event-logistics/event-logistics";
+import EventSummary from "@/components/event-detail/event-summary/event-summary";
 import {
   getAllEvents,
   getEventById,

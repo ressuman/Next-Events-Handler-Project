@@ -1,6 +1,4 @@
 import ErrorAlert from "@/components/error-alert/error-alert";
-import EventList from "@/components/event-list/event-list";
-import ResultsTitle from "@/components/results-title/results-title";
 import Button from "@/components/ui/button";
 import { getFilteredEvents } from "@/helpers/utils/api-utils";
 import useSWR from "swr";
@@ -8,6 +6,8 @@ import useSWR from "swr";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import Head from "next/head";
+import ResultsTitle from "@/components/events/results-title/results-title";
+import EventList from "@/components/events/event-list/event-list";
 
 // export default function FilteredEventsPage({ hasError, events, date }) {
 
