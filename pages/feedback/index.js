@@ -1,3 +1,5 @@
+import { buildFeedbackPath, extractFeedback } from "../api/feedback";
+
 export default function FeedbackPage({ feedbackItems }) {
   return (
     <ul>
@@ -10,10 +12,13 @@ export default function FeedbackPage({ feedbackItems }) {
   );
 }
 
-export async function getStaticProps(ctx) {
+export async function getStaticProps() {
+  const filePath = buildFeedbackPath();
+  const data = extractFeedback(filePath);
+
   return {
     props: {
-      data: null,
+      feedbackItems: data,
     },
   };
 }
