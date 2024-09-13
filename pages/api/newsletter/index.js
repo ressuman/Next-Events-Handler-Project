@@ -10,10 +10,16 @@ export default function handler(req, res) {
       return;
     }
 
-    console.log(email);
+    const newRegistration = {
+      id: new Date().toISOString(),
+      email,
+    };
+
+    console.log(newRegistration);
 
     res.status(201).json({
       message: "Signed Up!.",
+      data: newRegistration,
     });
   }
 }
