@@ -36,7 +36,7 @@ export default function NewComment({ onAddComment }) {
   }
 
   return (
-    <form className={styles.form}>
+    <form className={styles.form} onSubmit={sendCommentHandler}>
       <div className={styles.row}>
         <div className={styles.control}>
           <label htmlFor="email">Your email</label>
@@ -51,7 +51,9 @@ export default function NewComment({ onAddComment }) {
         <label htmlFor="comment">Your comment</label>
         <textarea id="comment" rows="5" ref={commentInputRef}></textarea>
       </div>
-      {isInvalid && <p>Please enter a valid email address and comment!</p>}
+      {isInvalid && (
+        <p>Please enter a valid email address, your name and comment!</p>
+      )}
       <button>Submit</button>
     </form>
   );
