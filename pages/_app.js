@@ -1,3 +1,4 @@
+import Notification from "@/components/notification/notification";
 import "@/styles/globals.css";
 import RootLayout from "@/wrapper/layout/layout";
 import Head from "next/head";
@@ -16,6 +17,7 @@ export default function App({ Component, pageProps }) {
         <link rel="icon" type="image/svg" href="/icon.svg" />
       </Head>
       <Component {...pageProps} />
+      <Notification title="Test" message="This is a test." status="error" />
     </RootLayout>
   );
 }
