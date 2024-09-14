@@ -1,85 +1,17 @@
-import { MongoClient } from "mongodb";
-
-// export default async function handler(req, res) {
-//   const { eventId } = req.query;
-
-//   const url = process.env.MONGO_DB_URL;
-//   const client = new MongoClient(url);
-//   const dbName = "Events-Comments";
-
-//   await client.connect();
-//   const db = client.db(dbName);
-//   const collection = db.collection("comments");
-
-//   if (req.method === "POST") {
-//     const { email, name, text } = req.body;
-
-//     if (
-//       !email ||
-//       email.trim() === "" ||
-//       !email.includes("@") ||
-//       !name ||
-//       name.trim() === "" ||
-//       !text ||
-//       text.trim() === ""
-//     ) {
-//       res.status(422).json({
-//         message: "Invalid input",
-//       });
-//       return;
-//     }
-
-//     const newComment = {
-//       eventId,
-//       email,
-//       name,
-//       text,
-//       date: new Date(),
-//     };
-
-//     res.status(201).json({
-//       message: "Comment added.",
-//       comment: newComment,
-//     });
-//   }
-
-//   if (req.method === "GET") {
-//     const dummyList = [
-//       {
-//         id: "c1",
-//         name: "Rich",
-//         text: "This is just for practice",
-//       },
-//       {
-//         id: "c2",
-//         name: "Bella",
-//         text: "This is just for more practice",
-//       },
-//       {
-//         id: "c1",
-//         name: "Nate",
-//         text: "This is the 3rd practice",
-//       },
-//     ];
-
-//     res.status(200).json({
-//       message: "Retrieved all comments",
-//       comments: dummyList,
-//     });
-//   }
-// }
+import {
+  connectDatabase,
+  getAllDocuments,
+  insertDocument,
+} from "@/helpers/utils/db-utils";
 
 export default async function handler(req, res) {
   const { eventId } = req.query;
 
-  const url = process.env.MONGO_DB_URL;
-  const client = new MongoClient(url);
-  const dbName = "Events-Comments";
+  let client;
 
   try {
-    await client.connect();
-    const db = client.db(dbName);
-    const collection = db.collection("comments");
+    const dbConfig = await connectDatabase("Events-Comments");
+    client = dbConfig.client;
 
     if (req.method === "POST") {
       const { email, name, text } = req.body;
@@ -94,6 +26,7 @@ export default async function handler(req, res) {
         text.trim() === ""
       ) {
         res.status(422).json({ message: "Invalid input" });
+        client.close();
         return;
       }
 
@@ -106,9 +39,14 @@ export default async function handler(req, res) {
       };
 
       try {
-        const result = await collection.insertOne(newComment);
+        const insertResult = await insertDocument(
+          client,
+          dbConfig.dbName,
+          "comments",
+          newComment
+        );
 
-        newComment.id = result.insertedId;
+        newComment._id = insertResult.insertedId;
 
         res.status(201).json({
           message: "Comment added.",
@@ -119,10 +57,13 @@ export default async function handler(req, res) {
       }
     } else if (req.method === "GET") {
       try {
-        const comments = await collection
-          .find({ eventId })
-          .sort({ _id: -1 })
-          .toArray();
+        const comments = await getAllDocuments(
+          client,
+          dbConfig.dbName,
+          "comments",
+          { eventId },
+          { date: -1 }
+        );
 
         res.status(200).json({
           message: "Retrieved all comments",
@@ -137,6 +78,8 @@ export default async function handler(req, res) {
   } catch (error) {
     res.status(500).json({ message: "Database connection failed" });
   } finally {
-    await client.close();
+    if (client) {
+      await client.close();
+    }
   }
 }

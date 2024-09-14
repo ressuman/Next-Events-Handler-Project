@@ -24,3 +24,20 @@ export async function insertDocument(client, dbName, collectionName, document) {
     throw new Error("Failed to insert document.");
   }
 }
+export async function getAllDocuments(
+  client,
+  dbName,
+  collectionName,
+  find = {},
+  sort = {}
+) {
+  try {
+    const db = client.db(dbName);
+    const collection = db.collection(collectionName);
+    const documents = await collection.find(find).sort(sort).toArray();
+    return documents;
+  } catch (error) {
+    console.error("Failed to retrieve documents:", error);
+    throw new Error("Could not get documents.");
+  }
+}
