@@ -20,7 +20,7 @@ export default function handler(req, res) {
     }
 
     const newComment = {
-      id: new Date().toISOString(),
+      id,
       email,
       name,
       text,
