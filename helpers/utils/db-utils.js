@@ -1,9 +1,8 @@
 import { MongoClient } from "mongodb";
 
-export async function connectDatabase() {
+export async function connectDatabase(dbName) {
   const url = process.env.MONGO_DB_URL;
   const client = new MongoClient(url);
-  const dbName = "Events-Newsletter";
 
   try {
     await client.connect();
@@ -14,10 +13,10 @@ export async function connectDatabase() {
   }
 }
 
-export async function insertDocument(client, dbName, document) {
+export async function insertDocument(client, dbName, collectionName, document) {
   try {
     const db = client.db(dbName);
-    const collection = db.collection("emails");
+    const collection = db.collection(collectionName);
     const insertResult = await collection.insertOne(document);
     return insertResult;
   } catch (error) {
