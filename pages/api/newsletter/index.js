@@ -12,10 +12,11 @@ export default async function handler(req, res) {
     let client;
 
     try {
-      const { client, dbName } = await connectDatabase();
+      const { client, dbName } = await connectDatabase("Events-Newsletter");
       const insertResult = await insertDocument(
         client,
         dbName,
+        "emails",
         newRegistration
       );
 
