@@ -119,7 +119,10 @@ export default async function handler(req, res) {
       }
     } else if (req.method === "GET") {
       try {
-        const comments = await collection.find().sort({ _id: -1 }).toArray();
+        const comments = await collection
+          .find({ eventId })
+          .sort({ _id: -1 })
+          .toArray();
 
         res.status(200).json({
           message: "Retrieved all comments",
