@@ -26,7 +26,7 @@ export default async function handler(req, res) {
         text.trim() === ""
       ) {
         res.status(422).json({ message: "Invalid input" });
-        client.close();
+        //client.close();
         return;
       }
 
@@ -77,9 +77,10 @@ export default async function handler(req, res) {
     }
   } catch (error) {
     res.status(500).json({ message: "Database connection failed" });
-  } finally {
-    if (client) {
-      await client.close();
-    }
   }
+  // finally {
+  //   if (client) {
+  //     await client.close();
+  //   }
+  // }
 }
