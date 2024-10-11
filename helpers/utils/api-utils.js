@@ -1,5 +1,5 @@
 export async function getAllEvents() {
-  const url = process.env.NEXT_PUBLIC_FB_RTDB_REF_URL;
+  const url = process.env.FB_RTDB_REF_URL;
 
   const response = await fetch(`${url}/events.json`);
 

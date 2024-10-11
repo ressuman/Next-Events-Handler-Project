@@ -7,7 +7,7 @@ export default function App({ Component, pageProps }) {
   return (
     <RootLayout>
       <Head>
-        <title>Ressuman Events Handler</title>
+        {/* <title>Ressuman Events Handler</title> */}
         <meta
           name="description"
           content="Everything you need to know about scheduling an event"
